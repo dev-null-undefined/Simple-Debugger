@@ -7,6 +7,7 @@
 #include "../Menus/Menus/MainMenu.h"
 
 void Controller::start() {
+    initscr();
     m_menus.pushMenu(std::make_shared<MainMenu>());
     inputLoop();
 }
