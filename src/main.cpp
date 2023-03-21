@@ -1,10 +1,12 @@
 #include <iostream>
+#include "Tracer/Controller.h"
+#include "Tracer/Actions/RegisterActions.h"
 
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    for (int i = 0; i < argc; i++) {
-        cout << argv[i] << endl;
-    }
+    registerActions();
+    Controller controller;
+    controller.start();
     return 0;
 }
