@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-set(PROJECT_NAME "PROJECT-NAME")
+set(PROJECT_NAME "Simple-debugger")
 set(PROJECT_VERSION "0.0.0")
 
 

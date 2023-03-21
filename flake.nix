@@ -23,7 +23,7 @@
       ];
       dev-deps = with pkgs; [glibc libcxx doxygen graphviz];
       package-config = rec {
-        pname = "PROJECT-NAME";
+        pname = "Simple-debugger";
         packages-name = pname;
         version = "v0.0.0";
         src = ./.;
