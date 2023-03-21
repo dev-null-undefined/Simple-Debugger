@@ -12,9 +12,10 @@ void Debugger::show(Dimension initial_size, MenuManager &manager) {
     keypad(stdscr, TRUE);
     m_window = newwin((int) initial_size.m_y, (int) initial_size.m_x, 0, 0);
     m_windowSize = initial_size - Dimension{2, 2};
-    box(m_window, 0, 0);
 
     refresh();
+    box(m_window, 0, 0);
+    wrefresh(m_window);
     update();
 }
 
@@ -23,7 +24,8 @@ void Debugger::resize(Dimension size) {
 }
 
 void Debugger::hide() {
-
+    delwin(m_window);
+    m_window = nullptr;
 }
 
 Tracer &Debugger::getTracer() {
@@ -35,18 +37,22 @@ void Debugger::setTracer(Tracer &&tracer) {
 }
 
 void Debugger::update() {
-    auto action = ActionManager::getAction(m_command);
+    wclear(m_window);
+    box(m_window, 0, 0);
+    wrefresh(m_window);
+    std::vector<std::string> splitCommand = split(m_command, " ");
+    auto action = ActionManager::getAction(splitCommand[0]);
     if ((action != nullptr && action->isShortcut()) || m_commandCompleted) {
         m_history.add(m_command);
-        std::vector<std::string> splitCommand = split(m_command, " ");
-        ActionPtr action = ActionManager::getAction(splitCommand[0]);
         if (action == nullptr) {
-            std::cout << "Unknown command" << std::endl;
+            TerminalManager::print("Unknown command: " + m_command, m_window, {1, 1});
         } else {
             action->execute(*this, splitCommand);
         }
         m_command = "";
         m_commandCompleted = false;
+    } else {
+        TerminalManager::print(m_command, m_window, {1, 1});
     }
 }
 
@@ -60,7 +66,7 @@ bool Debugger::input(int input, bool &handled, MenuManager &manager) {
         handled = true;
         return true;
     }
-    if (input == KEY_BACKSPACE) {
+    if (input == KEY_BACKSPACE || input == 127 || input == '\b') {
         if (!m_command.empty()) {
             m_command.pop_back();
         }
@@ -83,4 +89,10 @@ bool Debugger::isCompleted() const {
 
 Debugger::Debugger() {
     registerActions();
+}
+
+void Debugger::printLines(const std::vector<std::string> &lines) {
+    for (int i = 0; i < lines.size() && i < m_windowSize.m_y - 2; ++i) {
+        TerminalManager::print(lines[i], m_window, {1, i + 1});
+    }
 }

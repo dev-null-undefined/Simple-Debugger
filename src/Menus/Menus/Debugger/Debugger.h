@@ -24,6 +24,7 @@ public:
 
     bool input(int input, bool &handled, MenuManager &manager) override;
 
+    void printLines(const std::vector<std::string> &lines);
 
     Tracer &getTracer();
 
