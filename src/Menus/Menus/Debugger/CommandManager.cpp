@@ -20,11 +20,10 @@ ActionPtr ActionManager::getAction(const std::string &command) {
 }
 
 void ActionManager::addAction(const ActionPtr &action) {
-#ifdef DEBUG
-    if (std::ranges::find(ACTIONS, action.get(), [](const ActionPtr &a) { return a.get(); }) != ACTIONS.end())
-        throw std::runtime_error("Action already added");
-#endif
-    ACTIONS.push_back(action);
+    if (auto iter = std::ranges::find(ACTIONS, action.get(), [](const ActionPtr &a) { return a.get(); });
+            iter == ACTIONS.end()) {
+        ACTIONS.push_back(action);
+    }
 }
 
 
