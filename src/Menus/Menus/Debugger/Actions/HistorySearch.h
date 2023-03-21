@@ -6,9 +6,10 @@
 #include "../../../../Tracer/ShortCut.h"
 #include "../Debugger.h"
 
-class HistorySearch: public ShortCut {
+class HistorySearch : public ShortCut {
 public:
     void execute(Debugger &controller, const std::vector<std::string> &args) override;
+
     [[nodiscard]] bool shortCutMatches(const std::string &command) const override;
 
 protected:

@@ -40,10 +40,10 @@ void Tracer::dumpRegisters(std::ostream &os) {
 void Tracer::stepOverBreakpoint() {
     auto rip = getRegister(Register::Identifier::rip);
     --rip;
-    auto ripValue = (std::intptr_t)*rip;
-    if(m_tracedProgram.hasBreakpoint(ripValue)) {
+    auto ripValue = (std::intptr_t) *rip;
+    if (m_tracedProgram.hasBreakpoint(ripValue)) {
         auto breakpoint = m_tracedProgram.getBreakpoint(ripValue);
-        if(breakpoint) {
+        if (breakpoint) {
             std::cout << "Stepping over breakpoint at " << std::hex << ripValue << std::endl;
             breakpoint.disable();
             setRegister(rip);

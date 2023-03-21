@@ -22,18 +22,19 @@ public:
 
     [[nodiscard]] bool isCompleted() const override;
 
-    bool input(int input, bool &handled, MenuManager & manager) override;
+    bool input(int input, bool &handled, MenuManager &manager) override;
 
 
     Tracer &getTracer();
 
     void setTracer(Tracer &&tracer);
+
 private:
 
     std::optional<Tracer> m_tracer;
     std::string m_command;
     bool m_commandCompleted = false;
-    WINDOW * m_window = nullptr;
+    WINDOW *m_window = nullptr;
     Dimension m_windowSize;
     HistoryManager m_history;
 

@@ -4,9 +4,10 @@
 
 #include "../Menus/Menus/Debugger/Action.h"
 
-class ShortCut: public Action {
+class ShortCut : public Action {
 public:
     [[nodiscard]] virtual bool shortCutMatches(const std::string &command) const = 0;
+
     [[nodiscard]] size_t matches(const std::string &command) const override;
 
     [[nodiscard]] bool isShortcut() const override;

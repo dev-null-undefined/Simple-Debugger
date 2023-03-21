@@ -4,7 +4,7 @@
 
 #include "../Menu.h"
 
-class MainMenu: public Menu{
+class MainMenu : public Menu {
     bool m_shown = false;
 public:
     void show(Dimension initial_size, MenuManager &manager) override;

@@ -8,6 +8,7 @@
 class TerminalManager {
 public:
     static Dimension getTerminalSize();
+
     static constexpr int CTRL_MASK = 0x1F;
 };
 

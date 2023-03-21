@@ -5,7 +5,6 @@
 #include <cstdint>
 
 
-
 class Breakpoint {
 public:
     enum class State {
@@ -17,14 +16,19 @@ public:
     Breakpoint(pid_t pid, std::intptr_t addr) noexcept;
 
     void enable();
+
     void disable();
+
     void toggle();
 
     [[nodiscard]] bool isEnabled() const;
+
     [[nodiscard]] State getState() const;
+
     [[nodiscard]] std::intptr_t getAddress() const;
 
     void setPid(pid_t pid);
+
     [[nodiscard]] pid_t getPid() const;
 
     explicit operator bool() const;

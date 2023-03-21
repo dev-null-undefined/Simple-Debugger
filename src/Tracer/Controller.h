@@ -9,13 +9,16 @@
 #include "../Menus/MenuManager.h"
 
 class Action;
+
 using ActionPtr = std::shared_ptr<Action>;
 
 class Controller {
     MenuManager m_menus;
 
     static Dimension getResolution();
+
     void inputLoop();
+
 public:
     void start();
 };

@@ -3,7 +3,7 @@
 #include "ActionManager.h"
 
 size_t Action::matches(const std::string &command) const {
-    if(hasPrefix(getName(),command)) {
+    if (hasPrefix(getName(), command)) {
         return getPriority();
     } else {
         return 0;

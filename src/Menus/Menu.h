@@ -8,7 +8,7 @@
  * @brief Virtual class representing single ncurses scene/menu.
  */
 class Menu {
-  public:
+public:
 
     virtual ~Menu() = default;
 
@@ -22,7 +22,7 @@ class Menu {
 
     virtual bool isCompleted() const = 0;
 
-    virtual bool input(int input, bool & handled, MenuManager & manager) = 0;
+    virtual bool input(int input, bool &handled, MenuManager &manager) = 0;
 
 };
 

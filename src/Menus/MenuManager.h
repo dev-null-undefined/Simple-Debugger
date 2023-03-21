@@ -3,6 +3,7 @@
 
 #include <memory>
 #include <list>
+
 struct Menu;
 
 class MenuManager {

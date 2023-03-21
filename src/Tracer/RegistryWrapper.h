@@ -27,52 +27,78 @@ public:
     [[nodiscard]] Register::Identifier getRegisterName() const;
 
     explicit operator Register::register_value() const;
+
     [[nodiscard]] Register::register_value getValue() const;
-    [[nodiscard]] Register::register_value operator *() const;
+
+    [[nodiscard]] Register::register_value operator*() const;
 
     self &operator+=(const self &rhs);
+
     self &operator-=(const self &rhs);
+
     self &operator*=(const self &rhs);
+
     self &operator/=(const self &rhs);
+
     self &operator%=(const self &rhs);
+
     self &operator&=(const self &rhs);
+
     self &operator|=(const self &rhs);
+
     self &operator^=(const self &rhs);
+
     self &operator<<=(const self &rhs);
+
     self &operator>>=(const self &rhs);
 
     self &operator++();
+
     self &operator--();
 
     self operator++(int); // NOLINT(cert-dcl21-cpp)
     self operator--(int); // NOLINT(cert-dcl21-cpp)
 
     self operator+() const;
+
     self operator-() const;
+
     self operator~() const;
 
     self operator+(const self &rhs) const;
+
     self operator-(const self &rhs) const;
+
     self operator*(const self &rhs) const;
+
     self operator/(const self &rhs) const;
+
     self operator%(const self &rhs) const;
+
     self operator&(const self &rhs) const;
+
     self operator|(const self &rhs) const;
+
     self operator^(const self &rhs) const;
+
     self operator<<(const self &rhs) const;
+
     self operator>>(const self &rhs) const;
 
     bool operator==(const self &rhs) const;
+
     bool operator!=(const self &rhs) const;
 
     bool operator<(const self &rhs) const;
+
     bool operator>(const self &rhs) const;
+
     bool operator<=(const self &rhs) const;
+
     bool operator>=(const self &rhs) const;
 };
 
 std::ostream &operator<<(std::ostream &os, const RegisterWrapper &registerWrapper);
-
 
 
 #endif //SIMPLE_DEBUGGER_REGISTRYWRAPPER_H

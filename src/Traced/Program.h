@@ -15,8 +15,11 @@ public:
     pid_t getPid() const;
 
     bool setBreakpoint(std::intptr_t address);
+
     bool removeBreakpoint(std::intptr_t address);
+
     bool hasBreakpoint(std::intptr_t address);
+
     Breakpoint getBreakpoint(std::intptr_t address);
 
     void run();
@@ -29,6 +32,7 @@ public:
 
 private:
     void start();
+
     std::unordered_map<std::intptr_t, Breakpoint> m_breakPoints;
 
     pid_t m_pid{};

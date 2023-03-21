@@ -5,7 +5,7 @@ bool ShortCut::isShortcut() const {
 }
 
 size_t ShortCut::matches(const std::string &command) const {
-    if(shortCutMatches(command))
+    if (shortCutMatches(command))
         return -1;
     return Action::matches(command);
 }

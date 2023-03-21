@@ -8,6 +8,7 @@ class ActionManager {
     static std::vector<ActionPtr> ACTIONS;
 public:
     static void addAction(const ActionPtr &action);
+
     static ActionPtr getAction(const std::string &command);
 };
 

@@ -4,7 +4,7 @@
 #include "../Action.h"
 #include "../Debugger.h"
 
-class Continue: public Action {
+class Continue : public Action {
 public:
     void execute(Debugger &controller, const std::vector<std::string> &args) override;
 

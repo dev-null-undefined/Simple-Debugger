@@ -173,7 +173,8 @@ RegisterWrapper::self RegisterWrapper::operator>>(const RegisterWrapper::self &r
     return tmp;
 }
 
-RegisterWrapper::RegisterWrapper(Register::register_value value, Register::Identifier registerName, Tracer *tracer) noexcept:
+RegisterWrapper::RegisterWrapper(Register::register_value value, Register::Identifier registerName,
+                                 Tracer *tracer) noexcept:
         m_value(value),
         m_register(registerName),
         m_tracer(tracer) {}

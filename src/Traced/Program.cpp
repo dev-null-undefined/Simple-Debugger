@@ -72,7 +72,8 @@ void Program::checkBreakpoints(pid_t pid) {
     for (auto &[address, breakpoint]: m_breakPoints) {
         if (breakpoint.getState() == Breakpoint::State::TO_BE_ENABLED) {
             breakpoint.setPid(pid);
-            std::cout << "Enabling breakpoint at " << std::hex << address << ", " << breakpoint.isEnabled() << std::endl;
+            std::cout << "Enabling breakpoint at " << std::hex << address << ", " << breakpoint.isEnabled()
+                      << std::endl;
         }
     }
 }

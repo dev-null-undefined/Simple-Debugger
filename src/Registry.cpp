@@ -3,7 +3,8 @@
 #include <iomanip>
 #include "Registry.h"
 
-Register::register_value &Register::getRegisterReference(user_regs_struct &regsStruct, Register::Identifier registerName) {
+Register::register_value &
+Register::getRegisterReference(user_regs_struct &regsStruct, Register::Identifier registerName) {
     switch (registerName) {
         case Register::Identifier::rax:
             return regsStruct.rax;
@@ -76,7 +77,8 @@ std::string_view Register::registerNameToString(const Register::Identifier &reg)
 
 
 std::ostream &operator<<(std::ostream &os, const Register::Identifier &registryName) {
-    return os << std::setfill(' ') << std::setw(Register::MAX_REGISTRY_NAME_LENGTH) <<Register::registerNameToString(registryName);
+    return os << std::setfill(' ') << std::setw(Register::MAX_REGISTRY_NAME_LENGTH)
+              << Register::registerNameToString(registryName);
 }
 
 

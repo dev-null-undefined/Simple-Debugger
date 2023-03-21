@@ -37,7 +37,8 @@ void Breakpoint::disable() {
 
 
 bool Breakpoint::isEnabled() const {
-    std::cout << "Breakpoint at " << std::hex << m_address << " is " << (m_state == State::ENABLED ? "enabled" : "disabled") << std::endl;
+    std::cout << "Breakpoint at " << std::hex << m_address << " is "
+              << (m_state == State::ENABLED ? "enabled" : "disabled") << std::endl;
     return m_state == State::ENABLED;
 }
 

@@ -4,7 +4,7 @@
 
 #include "../Action.h"
 
-class Break: public Action{
+class Break : public Action {
 protected:
     std::string getName() const override;
 

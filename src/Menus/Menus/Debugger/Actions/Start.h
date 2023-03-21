@@ -5,7 +5,7 @@
 #include "../Action.h"
 #include "../Debugger.h"
 
-class Start: public Action {
+class Start : public Action {
 protected:
     std::string getName() const override;
 

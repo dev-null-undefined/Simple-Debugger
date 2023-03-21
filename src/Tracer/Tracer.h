@@ -19,14 +19,19 @@ public:
     void run();
 
     RegisterWrapper getRegister(Register::Identifier registerName, bool cached = false);
+
     void setRegister(const RegisterWrapper &registerWrapper);
 
     void dumpRegisters(std::ostream &os = std::cout);
+
     void continueExecution();
 
     void setBreakpoint(std::intptr_t address);
+
     void removeBreakpoint(std::intptr_t address);
+
     void toggleBreakpoint(std::intptr_t address);
+
     bool hasBreakpoint(std::intptr_t address);
 
 private:
@@ -47,7 +52,6 @@ private:
     pid_t m_pid;
 
     int m_waitStatus = 0;
-
 
 
     void wait_for_signal();

@@ -1,5 +1,6 @@
 #ifndef SIMPLE_DEBUGGER_HISTORYMANAGER_H
 #define SIMPLE_DEBUGGER_HISTORYMANAGER_H
+
 #include <vector>
 #include <string>
 #include "HistoryRecord.h"
@@ -10,11 +11,15 @@ class HistoryManager {
     std::vector<HistoryRecord> m_history;
 public:
     HistoryManager();
-    HistoryManager(const HistoryManager & other) = delete;
-    HistoryManager(HistoryManager && other) = delete;
+
+    HistoryManager(const HistoryManager &other) = delete;
+
+    HistoryManager(HistoryManager &&other) = delete;
+
     ~HistoryManager();
 
     void add(HistoryRecord command);
+
     std::vector<std::string> search(const std::string &command) const;
 };
 
