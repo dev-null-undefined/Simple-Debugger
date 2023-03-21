@@ -39,7 +39,7 @@ void Controller::inputLoop() {
 }
 
 Dimension Controller::getResolution() {
-    size_t x, y;
+    int x, y;
     getmaxyx(stdscr, y, x);
     return {x, y};
 }

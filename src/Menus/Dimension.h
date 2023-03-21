@@ -6,8 +6,8 @@
 
 struct Dimension {
     using self = Dimension;
-    size_t m_x;
-    size_t m_y;
+    int m_x;
+    int m_y;
 
     self &operator+=(const self &rhs);
 
