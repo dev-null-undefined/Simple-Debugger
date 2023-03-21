@@ -35,6 +35,35 @@ include(GNUInstallDirs)                 # This will define the default values fo
 include(InstallRequiredSystemLibraries) # Tell CMake that the `install` target needs to install required system libraries (eg: Windows SDK)
 include(CMakePackageConfigHelpers)      # Helper to create relocatable packages
 
+#############
+##  Libs   ##
+#############
+
+execute_process(COMMAND nix build --no-link nixpkgs\#ncurses.dev
+        OUTPUT_VARIABLE tmp
+        COMMAND nix path-info nixpkgs\#ncurses.dev
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE ncurses-dev)
+execute_process(COMMAND nix build --no-link nixpkgs\#ncurses.out
+        OUTPUT_VARIABLE tmp
+        COMMAND nix path-info nixpkgs\#ncurses.out
+        OUTPUT_STRIP_TRAILING_WHITESPACE
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+        OUTPUT_VARIABLE ncurses)
+
+message(STATUS "ncures: ${ncurses}")
+message(STATUS "ncurses-dev: ${ncurses-dev}")
+
+include_directories(${ncurses-dev}/include)
+link_directories(${ncurses}/lib)
+
+target_link_libraries(${PROJECT_NAME} ncurses ncursesw stdc++fs)
+target_link_directories(${PROJECT_NAME} PUBLIC ${ncurses}/lib)
+
+set(CMAKE_LIBRARY_PATH ${ncurses}/lib)
+
+
 ###############
 ##  Options  ##
 ###############

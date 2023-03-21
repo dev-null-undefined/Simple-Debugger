@@ -1,6 +1,6 @@
 #include "Continue.h"
 
-void Continue::execute(Controller &controller, const std::vector<std::string> &args) {
+void Continue::execute(Debugger &controller, const std::vector<std::string> &args) {
     controller.getTracer().continueExecution();
 }
 

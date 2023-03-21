@@ -1,6 +1,7 @@
 #include "Run.h"
+#include "../Debugger.h"
 
-void Run::execute(Controller &controller, const std::vector<std::string> &args) {
+void Run::execute(Debugger &controller, const std::vector<std::string> &args) {
     const std::string& path = args[1];
     std::vector<std::string> program_args;
     for (size_t i = 2; i < args.size(); ++i) {

@@ -1,6 +1,6 @@
 #include "DumpRegisters.h"
 
-void DumpRegisters::execute(Controller &controller, const std::vector<std::string> &args) {
+void DumpRegisters::execute(Debugger &controller, const std::vector<std::string> &args) {
     controller.getTracer().dumpRegisters();
 }
 

@@ -3,10 +3,11 @@
 
 
 #include "../Action.h"
+#include "../Debugger.h"
 
 class DumpRegisters : public Action {
 public:
-    void execute(Controller &controller, const std::vector<std::string> &args) override;
+    void execute(Debugger &controller, const std::vector<std::string> &args) override;
 
 protected:
     std::string getName() const override;

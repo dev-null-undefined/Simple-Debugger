@@ -3,6 +3,7 @@
 
 
 #include "../Action.h"
+#include "../Debugger.h"
 
 class Run : public Action {
 public:
@@ -10,7 +11,7 @@ protected:
     std::string getName() const override;
 
 public:
-    void execute(Controller &controller, const std::vector<std::string> &args) override;
+    void execute(Debugger &controller, const std::vector<std::string> &args) override;
 
 };
 

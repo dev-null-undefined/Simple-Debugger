@@ -2,67 +2,43 @@
 #include <iostream>
 #include <vector>
 #include <ranges>
+#include <ncurses.h>
 #include "Controller.h"
-#include "../Algorithms.h"
-#include "Action.h"
-
-
-std::string readInput(std::string & input) {
-    std::cout << ">> " << std::flush;
-    input.clear();
-    std::getline(std::cin, input);
-    return input;
-}
+#include "../Menus/Menus/MainMenu.h"
 
 void Controller::start() {
-    std::string command;
+    m_menus.pushMenu(std::make_shared<MainMenu>());
+    inputLoop();
+}
 
-    while (std::cin){
-        readInput(command);
-        if(command.empty())
+void Controller::inputLoop() {
+    while (true) {
+        flushinp();
+        auto currentMenu = m_menus.getCurrentMenu();
+        if (currentMenu == nullptr) {
+            break;
+        }
+        int input = getch();
+        if (input == KEY_RESIZE) {
+            currentMenu->resize(getResolution());
+            currentMenu->update();
             continue;
-        std::vector<std::string> splitCommand = split(command, " ");
-        ActionPtr action = getAction(splitCommand[0]);
-        if (action == nullptr) {
-            std::cout << "Unknown command" << std::endl;
-        } else {
-            action->execute(*this,splitCommand);
+        }
+        if (input == ERR) {
+            continue;
+        }
+        if (input == 4) {
+            break;
+        }
+        auto menu = m_menus.propagateInput(input);
+        if (menu != nullptr) {
+            m_menus.update(menu);
         }
     }
 }
 
-
-Tracer &Controller::getTracer() {
-    return *m_tracer;
+Dimension Controller::getResolution() {
+    size_t x, y;
+    getmaxyx(stdscr, y, x);
+    return {x, y};
 }
-
-ActionPtr Controller::getAction(const std::string &command) {
-    size_t maxPriority = 0;
-    ActionPtr maxPriorityAction = nullptr;
-    for(const auto &action : m_actions){
-        size_t priority = action->matches(command);
-        if(priority > maxPriority){
-            maxPriority = priority;
-            maxPriorityAction = action;
-        } else if(priority == maxPriority){
-            maxPriority = 0;
-        }
-    }
-    if(maxPriority == 0)
-        return nullptr;
-    return maxPriorityAction;
-}
-
-void Controller::addAction(const ActionPtr& action) {
-#ifdef DEBUG
-    if(std::ranges::find(m_actions, action.get(), [](const ActionPtr & a){return a.get();}) != m_actions.end())
-        throw std::runtime_error("Action already added");
-#endif
-    m_actions.push_back(action);
-}
-
-void Controller::setTracer(Tracer &&tracer) {
-    m_tracer = std::move(tracer);
-}
-
-std::vector<ActionPtr> Controller::m_actions = {};

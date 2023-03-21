@@ -3,20 +3,20 @@
 
 
 #include "Tracer.h"
+#include "../TerminalManager.h"
+#include "../History/HistoryManager.h"
+#include "../Menus/Menu.h"
+#include "../Menus/MenuManager.h"
+
 class Action;
 using ActionPtr = std::shared_ptr<Action>;
 
 class Controller {
-    static std::vector<ActionPtr> m_actions;
-    std::vector<std::string> m_history;
-    std::optional<Tracer> m_tracer;
+    MenuManager m_menus;
 
-    static ActionPtr getAction(const std::string &command);
+    static Dimension getResolution();
+    void inputLoop();
 public:
-    static void addAction(const ActionPtr& action);
-
-    Tracer &getTracer();
-    void setTracer(Tracer &&tracer);
     void start();
 };
 

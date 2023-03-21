@@ -3,7 +3,8 @@
 
 #include <memory>
 #include <vector>
-#include "Controller.h"
+#include "../../../Tracer/Controller.h"
+#include "Debugger.h"
 
 class Action {
 protected:
@@ -13,12 +14,13 @@ protected:
     virtual size_t getPriority() const;
 public:
     using ActionPtr = std::shared_ptr<Action>;
-
     static void registerAction(const ActionPtr& action);
+
     [[nodiscard]] virtual size_t matches(const std::string &command) const;
-    virtual void execute(Controller & controller, const std::vector<std::string> &args) = 0;
-    virtual ~Action() = default;
+    virtual void execute(Debugger &controller, const std::vector<std::string> &args) = 0;
     bool operator==(const Action &rhs) const;
+    virtual bool isShortcut() const;
+    virtual ~Action() = default;
 };
 
 
